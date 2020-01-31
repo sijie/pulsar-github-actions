@@ -23,8 +23,8 @@ done
 
 if [[ ${found_changed_dir_not_in_target_dirs} == "yes" ]]; then
     echo "Changes not only in $*, proceeding"
-    echo ::set-output name=changed_only::no
 else
     echo "Changes only in $*, skipping"
-    echo ::set-output name=changed_only::yes
+    # 78 is conventional "neutral exit code"
+    exit 78
 fi
