@@ -23,8 +23,8 @@ done
 
 if [[ ${found_changed_dir_not_in_target_dirs} == "yes" ]]; then
     echo "Changes not only in $*, proceeding"
-    echo ::set-output name=diff_only::no
+    echo ::set-output name=changed_only::no
 else
     echo "Changes only in $*, skipping"
-    echo ::set-output name=diff_only::yes
+    echo ::set-output name=changed_only::yes
 fi
