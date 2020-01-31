@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 
 read -r -a TARGET_DIRS <<< "$*"
 
