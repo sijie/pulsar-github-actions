@@ -2,8 +2,14 @@
 
 read -r -a TARGET_DIRS <<< "$*"
 
+cat ${GITHUB_EVENT_PATH}
+echo jq '.commits | length' "${GITHUB_EVENT_PATH}"
 GITSHA=$(jq '.commits | length' "${GITHUB_EVENT_PATH}")
 echo "GITSHA: ${GITSHA}"
+
+git --version
+git rev-parse --abbrev-ref HEAD
+
 CHANGED_DIRS=$(git diff --dirstat=files,0 master | awk '{ print $2 }')
 echo "CHANGED_DIRS are : ${CHANGED_DIRS}"
 
