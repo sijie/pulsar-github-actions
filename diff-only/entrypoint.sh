@@ -23,8 +23,10 @@ done
 
 if [[ ${found_changed_dir_not_in_target_dirs} == "yes" ]]; then
     echo "Changes not only in $*, setting 'changed_only' to 'no'"
+    echo ::set-output name=changed_dirs::"${CHANGED_DIRS}"
     echo ::set-output name=changed_only::no
 else
     echo "Changes only in $*, setting 'changed_only' to 'yes'"
+    echo ::set-output name=changed_dirs::"${CHANGED_DIRS}"
     echo ::set-output name=changed_only::yes
 fi
