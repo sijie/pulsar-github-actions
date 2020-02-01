@@ -2,7 +2,9 @@
 
 read -r -a TARGET_DIRS <<< "$*"
 
-CHANGED_DIRS=$(git diff --dirstat=files,0 HEAD~$(jq '.commits | length' "${GITHUB_EVENT_PATH}") | awk '{ print $2 }')
+GITSHA=$(jq '.commits | length' "${GITHUB_EVENT_PATH}")
+echo "GITSHA: ${GITSHA}"
+CHANGED_DIRS=$(git diff --dirstat=files,0 HEAD~${GITSHA} | awk '{ print $2 }')
 echo "CHANGED_DIRS are : ${CHANGED_DIRS}"
 
 found_changed_dir_not_in_target_dirs="no"
